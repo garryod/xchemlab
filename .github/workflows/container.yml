@@ -22,8 +22,18 @@ jobs:
     steps:
       - name: Checkout with LFS
         uses: actions/checkout@v3.5.3
+
+      - name: List LFS Files
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-file-ids
+
+      - name: Cache LFS Files
+        uses: actions/cache@v1.2.1
         with:
-          lfs: true
+          path: ./git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-asset-ids') }}
+
+      - name: Pull LFS Files
+        run: git lfs pull
 
       - name: Generate Image Name
         run: echo IMAGE_REPOSITORY=ghcr.io/$(echo "${{ github.repository }}-${{ matrix.target }}" | tr '[:upper:]' '[:lower:]' | tr '[_]' '[\-]') >> $GITHUB_ENV
