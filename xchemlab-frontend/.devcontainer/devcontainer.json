@@ -1,0 +1,21 @@
+{
+    "name": "xchemlab-ui",
+    "image": "docker.io/library/node:20.6.0-bookworm",
+    "runArgs": [
+        "--security-opt=label=type:container_runtime_t"
+    ],
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils": {
+            "username": "none"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-typescript-next",
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    },
+    "postCreateCommand": "yarn install"
+}

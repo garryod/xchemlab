@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "outDir": "./build",
+        "allowJs": true,
+        "target": "es5",
+        "useUnknownInCatchVariables": false,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
