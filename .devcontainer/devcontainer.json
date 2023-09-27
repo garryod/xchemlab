@@ -6,8 +6,7 @@
 			"extensions": [
 				"redhat.vscode-yaml",
 				"tsandall.opa",
-        		"ms-kubernetes-tools.vscode-kubernetes-tools",
-				"esbenp.prettier-vscode"
+        		"ms-kubernetes-tools.vscode-kubernetes-tools"
 			]
 		}
 	},
