@@ -1638,7 +1638,9 @@ dependencies = [
  "async-graphql",
  "async-graphql-axum",
  "axum",
+ "futures-core",
  "opa_client",
+ "tower-service",
  "url",
 ]
 
