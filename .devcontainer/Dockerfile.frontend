@@ -2,4 +2,4 @@ FROM docker.io/library/node:20.6.0-bookworm
 
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
-    sqlite3 pre-commit
+    pre-commit
