@@ -20,6 +20,8 @@ services:
     volumes:
       - ..:/workspace:z
     command: sleep infinity
+    environment:
+      SCHEMA_PATH: http://backend
 
   opa:
     image: docker.io/openpolicyagent/opa:0.53.1
