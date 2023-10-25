@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import { useQuery } from "@apollo/client";
 import { gql } from './__generated__/gql';
 import React from "react";
@@ -34,7 +35,16 @@ function DisplayPinInfo(): React.JSX.Element {
       notifyOnNetworkStatusChange: true,
     });
 
+  //const [isDarkMode, setDarkMode] = React.useState(false);
+
+  /* const toggleDarkMode = (checked: boolean) => {
+    setDarkMode(checked);
+  };*/
+
+  const { colorMode, toggleColorMode } = useColorMode()
+
   var loadingRows = loading ? 2 : 0
+  var bgColour = colorMode === 'dark' ? "black" : "white"
 
   if (error) return (
     <Alert status='error'>
@@ -97,9 +107,10 @@ function DisplayPinInfo(): React.JSX.Element {
         ]}
         data={data ? data.libraryPins.edges.map((edge) => edge.node): []}
         loadingRows={loadingRows}
+        rowVariant={"diamondStriped"}
       />
       <HStack justify='center' width='100%'>
-        <Button 
+        <Button marginTop={'10px'}
           colorScheme='teal' 
           variant='outline' 
           onClick={loadMore} 
@@ -110,6 +121,7 @@ function DisplayPinInfo(): React.JSX.Element {
           Load More
         </Button>
       </HStack>
+    </div>
     </>
   );
 }
