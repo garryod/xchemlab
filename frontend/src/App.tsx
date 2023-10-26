@@ -7,6 +7,7 @@ import { ChakraProvider, Alert, AlertIcon, AlertTitle, AlertDescription, Button,
 import { Table } from "./components/Table";
 import {Helmet} from 'react-helmet';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { DarkModeButton } from "./components/DarkModeButton";
 
 const GET_INFO = gql(`
 query pinInfo ($after: String) {
@@ -90,11 +91,13 @@ function DisplayPinInfo(): React.JSX.Element {
   return (
     <>
     <div>
-    <DarkModeSwitch
+    <DarkModeButton
+      aria-label='Search database'
       style={{ marginBottom: '1rem', marginLeft: '.25rem', marginTop: '.25rem', position: 'relative', left: '1875px'}}
-      checked={colorMode === 'dark'}
-      onChange={toggleColorMode}
-      size={30}
+      isDark={colorMode === 'dark'}
+      onClick={toggleColorMode}
+      variant={'unstyled'}
+      colorScheme={colorMode === 'dark' ? '#a3a3a3' : 'white'}
     />
         <Helmet>
         <style>{`body { background-color: ${bgColour} }`}</style>
