@@ -3,10 +3,9 @@ import { useQuery } from "@apollo/client";
 import { gql } from './__generated__/gql';
 import React from "react";
 import { theme } from "./styles/theme"
-import { ChakraProvider, Alert, AlertIcon, AlertTitle, AlertDescription, Button, HStack, useColorMode } from "@chakra-ui/react";
+import { ChakraProvider, Alert, AlertIcon, AlertTitle, AlertDescription, Button, HStack, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { Table } from "./components/Table";
 import {Helmet} from 'react-helmet';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { DarkModeButton } from "./components/DarkModeButton";
 
 const GET_INFO = gql(`
@@ -47,7 +46,7 @@ function DisplayPinInfo(): React.JSX.Element {
   const { colorMode, toggleColorMode } = useColorMode()
 
   var loadingRows = loading ? 2 : 0
-  var bgColour = colorMode === 'dark' ? "black" : "white"
+  const bgColour = useColorModeValue('white', 'black')
 
   if (error) return (
     <Alert status='error'>
@@ -92,12 +91,9 @@ function DisplayPinInfo(): React.JSX.Element {
     <>
     <div>
     <DarkModeButton
-      aria-label='Search database'
       style={{ marginBottom: '1rem', marginLeft: '.25rem', marginTop: '.25rem', position: 'relative', left: '1875px'}}
-      isDark={colorMode === 'dark'}
       onClick={toggleColorMode}
       variant={'unstyled'}
-      colorScheme={colorMode === 'dark' ? '#a3a3a3' : 'white'}
     />
         <Helmet>
         <style>{`body { background-color: ${bgColour} }`}</style>
