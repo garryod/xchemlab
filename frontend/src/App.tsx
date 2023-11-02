@@ -44,7 +44,7 @@ function DisplayPinInfo(): React.JSX.Element {
   const { colorMode, toggleColorMode } = useColorMode()
 
   var loadingRows = loading ? 2 : 0
-  var bgColour = colorMode === 'dark' ? "black" : "white"
+  const bgColour = useColorModeValue('white', 'black')
 
   if (error) return (
     <Alert status='error'>
