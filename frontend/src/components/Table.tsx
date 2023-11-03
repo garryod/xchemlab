@@ -1,4 +1,5 @@
-import { Box, BoxProps, Heading, Skeleton, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
+import { Box, BoxProps, HStack, Heading, Skeleton, Spacer, Stack, Table, Tbody, Td, Th, Thead, Tr, Text } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 
 export interface TableProps extends Omit<BoxProps, "onClick"> {
@@ -53,16 +54,25 @@ const TableView = ({
               ))}
             </Tr>
           </Thead>
+          
           <Tbody cursor='pointer'>
             {data.map((item, i) => (
               <Tr h='2vh' key={i} onClick={handleClick}>
                 {headers.map((header) => (
                   <Td data-id={i} key={header.key}>
+                    <HStack spacing={2}>
+                      <Text>
                     {item[header.key]}
+                    </Text>
+                    <Text>
+                    {header.key === 'status' ? <EditIcon/> : []}
+                    </Text>
+                    </HStack>
                   </Td>
                 ))}
               </Tr>
             ))}
+            
             {[...Array(loadingRows)].map(() => (
               <Tr h='2vh'>
                 {headers.map((header) => (
@@ -73,6 +83,7 @@ const TableView = ({
               </Tr>
             ))}
           </Tbody>
+          
         </Table>
       )}
     </Box>
