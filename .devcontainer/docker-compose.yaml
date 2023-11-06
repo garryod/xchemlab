@@ -7,13 +7,11 @@ services:
       dockerfile: Dockerfile.backend
     volumes:
       - ..:/workspace:z
-    command: cargo run --manifest-path /workspace/backend/Cargo.toml --release -p pin_packing  serve --database-url postgres://postgres:password@postgres/pin_packing
+    command: sleep infinity
     environment:
       OPA_URL: http://opa:8181
       DATABASE_URL: postgres://postgres:password@postgres
       RABBITMQ_URL: amqp://rabbitmq:password@rabbitmq
-    ports:
-      - "8080:80"
 
   frontend:
     image: docker.io/library/node:20.6.0-bookworm
