@@ -1,6 +1,7 @@
 import { EditIcon } from "@chakra-ui/icons";
-import { Box, BoxProps, HStack, Heading, Skeleton, Spacer, Stack, Table, Tbody, Td, Th, Thead, Tr, Text } from "@chakra-ui/react";
-import React, { useCallback } from "react";
+import { Box, BoxProps, HStack, Heading, Skeleton, Table, Tbody, Td, Th, Thead, Tr, Text, IconButton } from "@chakra-ui/react";
+import React, { useCallback, useState } from "react";
+import { UpdatePinStatus } from "./UpdatePinStatus";
 
 export interface TableProps extends Omit<BoxProps, "onClick"> {
   /** Table data */
@@ -39,6 +40,8 @@ const TableView = ({
     [data, onClick],
   );
 
+  const [show, setShow] = useState(true);
+
   return (
     <Box overflowY='scroll' {...props}>
       {data === null || data.length === 0 ? (
@@ -65,9 +68,21 @@ const TableView = ({
                     {item[header.key]}
                     </Text>
                     <Text>
-                    {header.key === 'status' ? <EditIcon/> : []}
+                      {header.key === 'status' ? 
+                          <IconButton 
+                            aria-label='editButton' 
+                            icon={<EditIcon color={'white'}/>} 
+                            colorScheme='black' 
+                            variant={'unstyled'}
+                            onClick={() => setShow(!show)}
+                          />  
+                        : null}
+          
                     </Text>
                     </HStack>
+                    <Text>
+                    {header.key === 'status' && show ? <UpdatePinStatus item={item}/> : null}
+                    </Text>
                   </Td>
                 ))}
               </Tr>

@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { gql } from './__generated__/gql';
 import React from "react";
 import { theme } from "@diamondlightsource/ui-components"
@@ -26,57 +26,6 @@ query pinInfo ($after: String) {
   }
 }
 `);
-
-const UPDATE_PIN_STATUS = gql(`
-  mutation updatePinStatus($barcode: String!, $status: PinStatus!) {
-    updateLibraryPinStatus(barcode: $barcode, status: $status) {
-      barcode
-      status
-    }
-  }
-`);
-
-function UpdatePin() {
-  const { loading, error, data } = useQuery(
-    GET_INFO,
-    {
-      notifyOnNetworkStatusChange: true,
-    });
-  const [
-    updateLibraryPinStatus,
-    { loading: mutationLoading, error: mutationError }
-  ] = useMutation(UPDATE_PIN_STATUS);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  return data.libraryPins.edges.map((edge) => {
-    let input;
-
-    return (
-      <div >
-        <p></p>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            updateLibraryPinStatus({ variables: { barcode: edge.node.barcode, status: input.value } });
-
-            input.value = "";
-          }}
-        >
-          <input
-            ref={node => {
-              input = node;
-            }}
-          />
-          <button type="submit">Update Todo</button>
-        </form>
-        {mutationLoading && <p>Loading...</p>}
-        {mutationError && <p>Error :( Please try again</p>}
-      </div>
-    );
-  });
-}
 
 // Displays libraryPins query in table component. The table can load more data if required 
 function DisplayPinInfo(): React.JSX.Element {
@@ -175,7 +124,7 @@ export default function App(): React.JSX.Element {
   return (
     <ChakraProvider theme={theme}>
       <DisplayPinInfo />
-      <UpdatePin/>
+      {/* <UpdatePin/> */}
     </ChakraProvider>
   );
 }
