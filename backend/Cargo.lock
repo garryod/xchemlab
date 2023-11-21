@@ -443,6 +443,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-tungstenite"
+version = "0.23.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1e9efbe14612da0a19fb983059a0b621e9cf6225d7018ecab4f9988215540dc"
+dependencies = [
+ "futures-io",
+ "futures-util",
+ "log",
+ "pin-project-lite",
+ "tungstenite 0.20.1",
+]
+
+[[package]]
 name = "atoi"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1007,7 +1020,7 @@ name = "chimp_controller"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "async-tungstenite",
+ "async-tungstenite 0.22.2",
  "chimp_protocol",
  "clap 4.4.8",
  "cynic",
@@ -1765,11 +1778,11 @@ dependencies = [
 
 [[package]]
 name = "graphql-ws-client"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09d6c77c2de260d565a53df302f27412930a961de7cbecfdfa18e61fe0c59604"
+checksum = "c0063064d93204da0f0baf4dc0e03bf8a9307f6924a37e604b912a63b08aa7ea"
 dependencies = [
- "async-tungstenite",
+ "async-tungstenite 0.23.0",
  "cynic",
  "futures",
  "log",
