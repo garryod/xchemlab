@@ -438,8 +438,21 @@ dependencies = [
  "futures-util",
  "log",
  "pin-project-lite",
- "tokio",
  "tungstenite 0.19.0",
+]
+
+[[package]]
+name = "async-tungstenite"
+version = "0.23.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1e9efbe14612da0a19fb983059a0b621e9cf6225d7018ecab4f9988215540dc"
+dependencies = [
+ "futures-io",
+ "futures-util",
+ "log",
+ "pin-project-lite",
+ "tokio",
+ "tungstenite 0.20.1",
 ]
 
 [[package]]
@@ -1007,7 +1020,7 @@ name = "chimp_controller"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "async-tungstenite",
+ "async-tungstenite 0.23.0",
  "chimp_protocol",
  "clap 4.4.11",
  "cynic",
@@ -1769,7 +1782,7 @@ version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "09d6c77c2de260d565a53df302f27412930a961de7cbecfdfa18e61fe0c59604"
 dependencies = [
- "async-tungstenite",
+ "async-tungstenite 0.22.2",
  "cynic",
  "futures",
  "log",
