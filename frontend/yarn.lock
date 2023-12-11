@@ -1412,6 +1412,13 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
 
+"@chakra-ui/icons@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.1.1.tgz#58ff0f9e703f2f4f89debd600ce4e438f43f9c9a"
+  integrity sha512-3p30hdo4LlRZTT5CwoAJq3G9fHI0wDc0pBaMHj4SUn0yomO+RcDRlzhdXqdr5cVnzax44sqXJVnf3oQG0eI+4g==
+  dependencies:
+    "@chakra-ui/icon" "3.2.0"
+
 "@chakra-ui/image@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.1.0.tgz#6c205f1ca148e3bf58345b0b5d4eb3d959eb9f87"
@@ -2020,23 +2027,24 @@
   resolved "https://registry.yarnpkg.com/@chakra-ui/visually-hidden/-/visually-hidden-2.2.0.tgz#9b0ecef8f01263ab808ba3bda7b36a0d91b4d5c1"
   integrity sha512-KmKDg01SrQ7VbTD3+cPWf/UfpF5MSwm3v7MWi0n5t8HnnadT13MF0MJCDSXbBWnzLv1ZKJ6zlyAOeARWX+DpjQ==
 
-"@diamondlightsource/ui-components@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@diamondlightsource/ui-components/-/ui-components-1.0.3.tgz#fc92d34bebcf3448985734fc039b4734ba6e45e5"
-  integrity sha512-Ino/Ke1MLivBfCRfygy33VBi7XKUXwdducJs1V/o1ymUVh8pdW6ZxD/p0Su/nQd6G2lqx7eZNeQxlTBA2O2j5Q==
+"@diamondlightsource/ui-components@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@diamondlightsource/ui-components/-/ui-components-1.2.0.tgz#8651f7f475845ed25923ba73dfc0500d8c6a3fc0"
+  integrity sha512-lP+gA+rXZMHT63KqecYnLO7e0ndBio3zLL1YAcpkGBG+zxAv70lp1G6eTOF/lirOqHJ9PzVKr5WQIB8hJdwK4A==
   dependencies:
-    "@visx/axis" "^3.3.0"
+    "@chakra-ui/icons" "^2.1.1"
+    "@visx/axis" "^3.5.0"
     "@visx/event" "^3.3.0"
-    "@visx/grid" "^3.3.0"
+    "@visx/grid" "^3.5.0"
     "@visx/group" "^3.3.0"
     "@visx/responsive" "^3.3.0"
-    "@visx/scale" "^3.3.0"
-    "@visx/shape" "^3.3.0"
-    "@visx/stats" "^3.3.0"
+    "@visx/scale" "^3.5.0"
+    "@visx/shape" "^3.5.0"
+    "@visx/stats" "^3.5.0"
     "@visx/tooltip" "^3.3.0"
     "@visx/voronoi" "^3.3.0"
     apng-js "^1.1.1"
-    react-icons "^4.11.0"
+    react-icons "^4.12.0"
 
 "@emotion/babel-plugin@^11.11.0":
   version "11.11.0"
@@ -3731,7 +3739,7 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@visx/axis@^3.3.0":
+"@visx/axis@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@visx/axis/-/axis-3.5.0.tgz#beb72fcb0ae849624202df805e13524bb6b73e2b"
   integrity sha512-vaY/CGk9+iQL1BFlHd5muIAuAjpPKLwtt6HwpITErW+cImjQJlNgYdgbwDCyuJMmJqXOlC9byWlmF+iI1dOPYg==
@@ -3770,7 +3778,7 @@
     "@types/react" "*"
     "@visx/point" "3.3.0"
 
-"@visx/grid@^3.3.0":
+"@visx/grid@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@visx/grid/-/grid-3.5.0.tgz#a20058f2c7553e3f2f2ec140bdfdf4434ffd5f41"
   integrity sha512-i1pdobTE223ItMiER3q4ojIaZWja3vg46TkS6FotnBZ4c0VRDHSrALQPdi0na+YEgppASWCQ2WrI/vD6mIkhSg==
@@ -3808,14 +3816,14 @@
     lodash "^4.17.21"
     prop-types "^15.6.1"
 
-"@visx/scale@3.5.0", "@visx/scale@^3.3.0":
+"@visx/scale@3.5.0", "@visx/scale@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@visx/scale/-/scale-3.5.0.tgz#c3db3863bbdd24d44781104ef5ee4cdc8df6f11d"
   integrity sha512-xo3zrXV2IZxrMq9Y9RUVJUpd93h3NO/r/y3GVi5F9AsbOzOhsLIbsPkunhO9mpUSR8LZ9TiumLEBrY+3frRBSg==
   dependencies:
     "@visx/vendor" "3.5.0"
 
-"@visx/shape@3.5.0", "@visx/shape@^3.3.0":
+"@visx/shape@3.5.0", "@visx/shape@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@visx/shape/-/shape-3.5.0.tgz#fa4bb7a9ed863360be541d75c434503246305e36"
   integrity sha512-DP3t9jBQ7dSE3e6ptA1xO4QAIGxO55GrY/6P+S6YREuQGjZgq20TLYLAsiaoPEzFSS4tp0m12ZTPivWhU2VBTw==
@@ -3833,7 +3841,7 @@
     lodash "^4.17.21"
     prop-types "^15.5.10"
 
-"@visx/stats@^3.3.0":
+"@visx/stats@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@visx/stats/-/stats-3.5.0.tgz#8f194569fbe5cdb21ca9730fcfa96ef05d5b301a"
   integrity sha512-VD49G5rnIBK0sPLFXWFOfs1vN9pAP2JLI1P2OdvTsJdXH0rbxX0OHoIeoNkmr9KG19pt6dc8qNkDfA8/krQxvg==
@@ -9775,7 +9783,7 @@ react-focus-lock@^2.9.4:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-icons@^4.11.0:
+react-icons@^4.12.0:
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.12.0.tgz#54806159a966961bfd5cdb26e492f4dafd6a8d78"
   integrity sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==
