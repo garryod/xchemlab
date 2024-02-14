@@ -1,14 +1,14 @@
 // main.rs
-#![forbid(unsafe_code)]
+
 mod entities;
 mod graphql;
 mod migrator;
 mod resolvers;
 
-use async_graphql::extensions::Tracing;
 use axum::{routing::get, Router, Server};
 use clap::Parser;
 use graphql::{root_schema_builder, RootSchema};
+use async_graphql::extensions::Tracing;
 use graphql_endpoints::{GraphQLHandler, GraphQLSubscription, GraphiQLHandler};
 use opa_client::OPAClient;
 use sea_orm::{ConnectOptions, Database, DatabaseConnection, DbErr, TransactionError};
@@ -47,12 +47,9 @@ struct SchemaArgs {
 
 async fn setup_database() -> Result<DatabaseConnection, TransactionError<DbErr>> {
     let db_url =
-        ConnectOptions::new("postgres://postgres:password@postgres/soak_compound".to_string());
-
+        ConnectOptions::new("postgres://postgres:password@postgres/compound_library".to_string());
     let db = Database::connect(db_url).await?;
-
     migrator::Migrator::up(&db, None).await?;
-
     Ok(db)
 }
 
@@ -73,7 +70,7 @@ fn setup_router(schema: RootSchema) -> Router {
 }
 
 async fn serve(router: Router) {
-    let socket_addr: SocketAddr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, 81));
+    let socket_addr: SocketAddr = SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::UNSPECIFIED, 82));
     println!("GraphiQL IDE: {}", socket_addr);
     Server::bind(&socket_addr)
         .serve(router.into_make_service())

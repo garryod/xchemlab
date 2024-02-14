@@ -1199,6 +1199,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "compound_library"
+version = "0.1.0"
+dependencies = [
+ "async-graphql",
+ "axum",
+ "clap 4.4.17",
+ "dotenvy",
+ "graphql_endpoints",
+ "opa_client",
+ "sea-orm",
+ "sea-orm-migration",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "url",
+ "uuid",
+]
+
+[[package]]
 name = "concurrent-queue"
 version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3639,25 +3658,6 @@ name = "smallvec"
 version = "1.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62bb4feee49fdd9f707ef802e22365a35de4b7b299de4763d44bfea899442ff9"
-
-[[package]]
-name = "soak_table"
-version = "0.1.0"
-dependencies = [
- "async-graphql",
- "axum",
- "clap 4.4.17",
- "dotenvy",
- "graphql_endpoints",
- "opa_client",
- "sea-orm",
- "sea-orm-migration",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "url",
- "uuid",
-]
 
 [[package]]
 name = "soakdb_io"

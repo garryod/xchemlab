@@ -1,9 +1,9 @@
-// src/resolvers/compound.rs
+// src/resolvers/compound_lib_res.rs
 
-use crate::entities::compound_library;
+use crate::entities::compound_library::{self, CompoundState};
 use async_graphql::{Context, Object};
 use opa_client::subject_authorization;
-use sea_orm::{ActiveValue, DatabaseConnection, DbErr, EntityTrait};
+use sea_orm::{ActiveValue, DatabaseConnection, EntityTrait};
 use uuid::Uuid;
 
 #[derive(Debug, Clone, Default)]
@@ -18,7 +18,7 @@ impl CompoundQuery {
         &self,
         ctx: &Context<'_>,
     ) -> async_graphql::Result<Vec<compound_library::Model>> {
-        subject_authorization!("xchemlab.soak_compound.read_compound", ctx).await?;
+        subject_authorization!("xchemlab.compound_library.read_compound", ctx).await?;
         let db = ctx.data::<DatabaseConnection>()?;
         compound_library::Entity::find()
             .all(db)
@@ -30,17 +30,10 @@ impl CompoundQuery {
         &self,
         ctx: &Context<'_>,
         id: Uuid,
-    ) -> async_graphql::Result<compound_library::Model> {
-        subject_authorization!("xchemlab.soak_compound.read_compound", ctx).await?;
+    ) -> async_graphql::Result<Option<compound_library::Model>> {
+        subject_authorization!("xchemlab.compound_library.read_compound", ctx).await?;
         let db = ctx.data::<DatabaseConnection>()?;
-        let compound = compound_library::Entity::find_by_id(id)
-            .one(db)
-            .await?
-            .ok_or(DbErr::RecordNotFound(format!(
-                "Compound not found with id {}",
-                id
-            )))?;
-        Ok(compound)
+        Ok(compound_library::Entity::find_by_id(id).one(db).await?)
     }
 }
 
@@ -50,17 +43,18 @@ impl CompoundMutation {
         &self,
         ctx: &Context<'_>,
         name: String,
+        compound_state: CompoundState,
     ) -> async_graphql::Result<compound_library::Model> {
-        subject_authorization!("xchemlab.soak_compound.write_compound", ctx).await?;
+        subject_authorization!("xchemlab.compound_library.write_compound", ctx).await?;
         let db = ctx.data::<DatabaseConnection>()?;
         let compound = compound_library::ActiveModel {
             id : ActiveValue::Set(Uuid::now_v7()),
-            name: ActiveValue::Set(name),
+            name: ActiveValue::set(name),
+            compound_state: ActiveValue::set(compound_state),
         };
-
         compound_library::Entity::insert(compound)
             .exec_with_returning(db)
             .await
-            .map_err(|e| async_graphql::Error::new(format!("Failed to add compound: {}", e)))
+            .map_err(|e| async_graphql::Error::new(format!("Failed to insert compound: {}", e)))
     }
 }
