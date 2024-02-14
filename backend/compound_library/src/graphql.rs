@@ -1,11 +1,20 @@
-use crate::resolvers::compound_lib_res::{CompoundMutation, CompoundQuery};
+use crate::resolvers::{
+    compound_types_res::{CompoundMutation, CompoundQuery},
+    compound_instances_res::{CompoundInstanceMutation, CompoundInstanceQuery}
+};
 use async_graphql::{EmptySubscription, MergedObject, Schema, SchemaBuilder};
 
 #[derive(Debug, Clone, MergedObject, Default)]
-pub struct Query(CompoundQuery);
+pub struct Query(
+    CompoundQuery,
+    CompoundInstanceQuery,
+);
 
 #[derive(Debug, Clone, MergedObject, Default)]
-pub struct Mutation(CompoundMutation);
+pub struct Mutation(
+    CompoundMutation,
+    CompoundInstanceMutation,
+);
 
 pub type RootSchema = Schema<Query, Mutation, EmptySubscription>;
 

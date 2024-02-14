@@ -1,6 +1,6 @@
 // src/migrator.rs
 
-use crate::entities::compound_library;
+use crate::entities::{compound_types, compound_instances};
 use axum::async_trait;
 use sea_orm::{DbErr, DeriveMigrationName, Schema};
 use sea_orm_migration::{MigrationTrait, MigratorTrait, SchemaManager};
@@ -24,11 +24,11 @@ impl MigrationTrait for Initial {
         let schema = Schema::new(backend);
 
         manager
-            .create_type(schema.create_enum_from_active_enum::<compound_library::CompoundState>())
+            .create_table(schema.create_table_from_entity(compound_types::Entity))
             .await?;
 
         manager
-            .create_table(schema.create_table_from_entity(compound_library::Entity))
+            .create_table(schema.create_table_from_entity(compound_instances::Entity))
             .await?;
 
         Ok(())

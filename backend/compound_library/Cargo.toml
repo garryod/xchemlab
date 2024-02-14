@@ -19,3 +19,6 @@ url ={ workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 uuid = { workspace = true , features = ["v7"]}
+the_paginator = { version = "0.1.0", path = "../the_paginator", features = [
+    "async-graphql",
+] }
