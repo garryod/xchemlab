@@ -11,12 +11,18 @@ jobs:
     strategy:
       matrix:
         service:
-          - compound_library
-          - compound_soaking
-          - crystal_library
-          - soakdb_sync
-          - pin_packing
-          - targeting
+          - name: compound_library
+            publish: true
+          - name: compound_soaking
+            publish: true
+          - name: crystal_library
+            publish: true
+          - name: soakdb_sync
+            publish: false
+          - name: pin_packing
+            publish: false
+          - name: targeting
+            publish: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -36,23 +42,34 @@ jobs:
         with:
           command: run
           args: >
-            --package ${{ matrix.service }}
+            --package ${{ matrix.service.name }}
             --manifest-path backend/Cargo.toml
             schema
-            --path ${{ matrix.service }}.graphql
+            --path ${{ matrix.service.name }}.graphql
 
       - name: Upload Schema Artifact
         uses: actions/upload-artifact@v4.3.1
         with:
-          name: ${{ matrix.service }}.graphql
-          path: ${{ matrix.service }}.graphql
+          name: ${{ matrix.service.name }}.graphql
+          path: ${{ matrix.service.name }}.graphql
 
-      - name: publish subgraph
+      - name: check subgraph schema
+        if: ${{ matrix.service.publish }}
+        uses: danielsinclair/rover-setup@v1
+        with:
+          args: subgraph check xchemlab@current 
+                --schema ${{ matrix.service.name }}.graphql
+                --name ${{ matrix.service.name }}
+        env:
+          APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+
+      - name: publish subgraph schema
+        if: ${{ matrix.service.publish == true }}
         uses: danielsinclair/rover-setup@v1
         with:
           args: subgraph publish xchemlab@current 
-                --routing-url http://${{ matrix.service }}:80 
-                --schema ${{ matrix.service }}.graphql
-                --name ${{ matrix.service }}
+                --routing-url http://${{ matrix.service.name }}:80 
+                --schema ${{ matrix.service.name }}.graphql
+                --name ${{ matrix.service.name }}
         env:
           APOLLO_KEY: ${{ secrets.APOLLO_KEY }}

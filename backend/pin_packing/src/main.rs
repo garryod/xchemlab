@@ -113,7 +113,8 @@ async fn main() {
         }
         Cli::Schema(args) => {
             let schema = root_schema_builder().finish();
-            let schema_string = schema.sdl();
+            let export_option = async_graphql::SDLExportOptions::default().federation();
+            let schema_string = schema.sdl_with_options(export_option);
             if let Some(path) = args.path {
                 let mut file = File::create(path).unwrap();
                 file.write_all(schema_string.as_bytes()).unwrap();
