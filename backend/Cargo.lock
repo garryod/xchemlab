@@ -1922,11 +1922,11 @@ dependencies = [
 
 [[package]]
 name = "graphql-ws-client"
-version = "0.5.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09d6c77c2de260d565a53df302f27412930a961de7cbecfdfa18e61fe0c59604"
+checksum = "e3126dd19313cb1493903f04fa1b56bd376dfc779bb9a55cdca88760edf646ca"
 dependencies = [
- "async-tungstenite",
+ "async-trait",
  "cynic",
  "futures",
  "log",
@@ -1934,7 +1934,6 @@ dependencies = [
  "serde",
  "serde_json",
  "thiserror",
- "uuid",
 ]
 
 [[package]]
@@ -2147,7 +2146,7 @@ dependencies = [
  "httpdate",
  "itoa",
  "pin-project-lite",
- "socket2 0.4.10",
+ "socket2 0.5.5",
  "tokio",
  "tower-service",
  "tracing",
