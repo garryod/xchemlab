@@ -35,6 +35,26 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: CHiMP Chomp
+  title: chimp-chomp
+  description: worker reading jobs from RabbitMQ queue, doing batch inference and returning results to anoter RMQ queue. 
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+    - worker
+    - machine learning
+    - zero service scaling
+spec:
+  type: worker
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: XChemLab backend
   title: xchemlab-backend
   description: XChemLab backend
@@ -48,3 +68,112 @@ spec:
   lifecycle: production
   owner: group:data-analysis
   system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab backend
+  title: xchemlab-backend
+  description: XChemLab backend
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - Rust
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+
