@@ -6,7 +6,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.9.0
+version: 0.11.0
 
 dependencies:
   - name: chimp-chomp
@@ -43,6 +43,10 @@ dependencies:
     repository: https://prometheus-community.github.io/helm-charts
     version: 25.0.0
     condition: prometheus.enabled
+  - name: postgresql-ha
+    repository: https://charts.bitnami.com/bitnami
+    version: 11.5.1
+    condition: postgresql-ha.enabled
   - name: thanos
     repository: oci://docker.io/bitnamicharts
     version: 12.11.0
@@ -51,6 +55,10 @@ dependencies:
     repository: oci://docker.io/bitnamicharts
     version: 12.0.7
     condition: rabbitmq.enabled
+  - name: router
+    repository: oci://ghcr.io/apollographql/helm-charts
+    version: 1.41.1
+    condition: apollo-router.enabled
   - alias: oauth2-proxy-thanos
     name: oauth2-proxy
     repository: oci://registry-1.docker.io/bitnamicharts
