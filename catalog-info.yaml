@@ -1,0 +1,291 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: XChemLab
+  title: xchemlab
+  description: A collection of services which comprise the XChemLab deployment
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab
+  tags:
+    - MX
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: XChemLab frontend
+  title: xchemlab-frontend
+  description: XChemLab frontend interface
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/frontend
+  tags:
+    - Typescript
+    - React
+spec:
+  type: application
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: CHiMP Chomp
+  title: chimp-chomp
+  description: Worker reading jobs from RabbitMQ queue, doing batch inference, and returning results to another RMQ queue.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/chimp_chomp
+  tags:
+    - Rust
+    - worker
+    - machine learning
+    - zero service scaling
+spec:
+  type: worker
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: chimp_controller
+  title: chimp-controller
+  description: Controller service for managing images and predictions.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/chimp_controller
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: compound_library
+  title: compound-library
+  description: Service related to compound instances and types.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/compound_library
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: compound_soaking
+  title: compound-soaking
+  description: Service related to soaking compounds.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/compound_soaking
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: crystal_library
+  title: crystal-library
+  description: Service managing crystal plates and wells.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/crystal_library
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pin_packing
+  title: pin-packing
+  description: Service related to pin packing, including managing canes, pins, and pucks.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/pin_packing
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: soakdb_io
+  title: soakdb-io
+  description: Service managing data types and tables related to soak databases.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/soakdb_io
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: soakdb_sync
+  title: soakdb-sync
+  description: Service for syncing soak databases.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/soakdb_sync
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: targeting
+  title: targeting
+  description: Service for image and prediction management.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/targeting
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: the_paginator
+  title: the-paginator
+  description: Service handling pagination.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/the_paginator
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: graphql_endpoints
+  title: graphql-endpoints
+  description: GraphQL service endpoints.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/graphql_endpoints
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: graphql_event_broker
+  title: graphql-event-broker
+  description: Broker for GraphQL events.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/graphql_event_broker
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: opa_client
+  title: opa-client
+  description: OPA client service for GraphQL queries.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/opa_client
+  tags:
+    - Rust
+spec:
+  type: service
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: chimp_protocol
+  title: chimp-protocol
+  description: Library for the CHiMP protocol.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/chimp_protocol
+  tags:
+    - Rust
+spec:
+  type: library
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: soakdb_io_library
+  title: soakdb-io-library
+  description: Library managing various datatypes in soakdb_io.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: DiamondLightSource/xchemlab/tree/main/backend/soakdb_io
+  tags:
+    - Rust
+spec:
+  type: library
+  lifecycle: production
+  owner: group:data-analysis
+  system: XChemLab
