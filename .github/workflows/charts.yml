@@ -27,6 +27,7 @@ jobs:
           helm repo add keda https://kedacore.github.io/charts
           helm repo add opa https://open-policy-agent.github.io/kube-mgmt/charts
           helm repo add prometheus https://prometheus-community.github.io/helm-charts
+          helm repo add bitnami https://charts.bitnami.com/bitnami
 
       - name: Lint
         run: >

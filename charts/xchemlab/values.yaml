@@ -22,44 +22,44 @@ chimp-chomp:
 compound-library:
   enabled: true
   database:
-    host: postgres://postgresql-ha-pgpool
-    user: postgres
+    host: postgres://{{ .Release.Name }}-postgresql-ha-pgpool.xchemlab.svc.cluster.local
+    user: xchemlab
     password:
-      secretName: postgres-passwords
-      secretKey: password
+      secretName: application-passwords
+      secretKey: passwords
   opa:
     url: http://{{ .Release.Name }}-opa-kube-mgmt:8181
 
 compound-soaking:
   enabled: true
   database:
-    host: postgres://postgresql-ha-pgpool
-    user: postgres
+    host: postgres://{{ .Release.Name }}-postgresql-ha-pgpool.xchemlab.svc.cluster.local
+    user: xchemlab
     password:
-      secretName: postgres-passwords
-      secretKey: password
+      secretName: application-passwords
+      secretKey: passwords
   opa:
     url: http://{{ .Release.Name }}-opa-kube-mgmt:8181
 
 crystal-library:
   enabled: true
   database:
-    host: postgres://postgresql-ha-pgpool
-    user: postgres
+    host: postgres://{{ .Release.Name }}-postgresql-ha-pgpool.xchemlab.svc.cluster.local
+    user: xchemlab
     password:
-      secretName: postgres-passwords
-      secretKey: password
+      secretName: application-passwords
+      secretKey: passwords
   opa:
     url: http://{{ .Release.Name }}-opa-kube-mgmt:8181
 
 pin-packing:
   enabled: true
   database:
-    host: postgres://postgresql-ha-pgpool
-    user: postgres
+    host: postgres://{{ .Release.Name }}-postgresql-ha-pgpool.xchemlab.svc.cluster.local
+    user: xchemlab
     password:
-      secretName: postgres-passwords
-      secretKey: password
+      secretName: application-passwords
+      secretKey: passwords
   opa:
     url: http://{{ .Release.Name }}-opa-kube-mgmt:8181
 
@@ -77,11 +77,11 @@ targeting:
       secretName: targeting-s3-secret
       secretKey: secret-access-key
   database:
-    host: postgres://postgresql-ha-pgpool
-    user: postgres
+    host: postgres://{{ .Release.Name }}-postgresql-ha-pgpool.xchemlab.svc.cluster.local
+    user: xchemlab
     password:
-      secretName: postgres-passwords
-      secretKey: password
+      secretName: application-passwords
+      secretKey: passwords
   opa:
     url: http://{{ .Release.Name }}-opa-kube-mgmt:8181
 
@@ -155,6 +155,34 @@ opa-kube-mgmt:
     create: false
   rbac:
     create: false
+
+postgresql-ha:
+  postgresql:
+    existingSecret: postgres-passwords
+    podAntiAffinityPreset: hard
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 2
+        memory: 2Gi
+    initdbScriptsSecret: postgres-init-script
+
+  pgpool:
+    existingSecret: pgpool-passwords
+    customUsersSecret: application-passwords
+    resources:
+      requests:
+        cpu: 500m
+        memory: 256Mi
+      limits:
+        cpu: 1
+        memory: 512Mi
+
+  persistence:
+    storageClass: db-nvme-storage
+    size: 50Gi
 
 prometheus:
   enabled: true
