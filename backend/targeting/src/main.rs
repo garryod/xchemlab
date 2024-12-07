@@ -1,4 +1,4 @@
-use async_graphql::extensions::Tracing;
+use async_graphql::{extensions::Tracing, SDLExportOptions};
 use aws_credential_types::{provider::SharedCredentialsProvider, Credentials};
 use aws_sdk_s3::{config::Region, Client};
 use clap::{ArgAction::SetTrue, Parser};
@@ -125,7 +125,7 @@ async fn main() {
         }
         Cli::Schema(args) => {
             let schema = root_schema_builder().finish();
-            let schema_string = schema.sdl();
+            let schema_string = schema.sdl_with_options(SDLExportOptions::default().federation());
             if let Some(path) = args.path {
                 let mut file = File::create(path).unwrap();
                 file.write_all(schema_string.as_bytes()).unwrap();

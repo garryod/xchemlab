@@ -12,7 +12,7 @@ mod migrator;
 /// through various entity structs.
 mod tables;
 
-use async_graphql::extensions::Tracing;
+use async_graphql::{extensions::Tracing, SDLExportOptions};
 use axum::{routing::get, Router, Server};
 use clap::Parser;
 use graphql::{root_schema_builder, RootSchema};
@@ -132,7 +132,7 @@ async fn main() {
         }
         Cli::Schema(args) => {
             let schema = root_schema_builder().finish();
-            let schema_string = schema.sdl();
+            let schema_string = schema.sdl_with_options(SDLExportOptions::default().federation());
             if let Some(path) = args.path {
                 let mut file = File::create(path).unwrap();
                 file.write_all(schema_string.as_bytes()).unwrap();
